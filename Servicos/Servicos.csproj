@@ -120,16 +120,25 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
+    <Content Include="Views\OrdemServicos\Create.cshtml" />
+    <Content Include="Views\OrdemServicos\Delete.cshtml" />
+    <Content Include="Views\OrdemServicos\Details.cshtml" />
+    <Content Include="Views\OrdemServicos\Edit.cshtml" />
+    <Content Include="Views\OrdemServicos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\OrdemServicosController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
-    <Compile Include="Data\ServicosContexto.cs" />
+    <Compile Include="Context\ServicosContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrdemServico.cs" />
     <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\OrdemServicoRepo.cs" />
+    <Compile Include="Repository\PessoaRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

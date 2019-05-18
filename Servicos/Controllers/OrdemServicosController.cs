@@ -5,110 +5,109 @@ using Servicos.Repository;
 
 namespace Servicos.Controllers
 {
-    public class PessoasController : Controller
+    public class OrdemServicosController : Controller
     {
-        private readonly PessoaRepo _pessoaRepo;
+        private readonly OrdemServicoRepo _ordemServicoRepo;
 
-        public PessoasController()
+        public OrdemServicosController()
         {
-            _pessoaRepo = new PessoaRepo();
+            _ordemServicoRepo = new OrdemServicoRepo();
         }
 
-        // GET: Pessoa
+        // GET: OrdemServicos
         public ActionResult Index()
         {
-            return View(_pessoaRepo.ObterTodos());
+            return View(_ordemServicoRepo.ObterTodos());
         }
 
-        // GET: Pessoa/Details/5
+        // GET: OrdemServicos/Details/5
         public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pessoa pessoa = _pessoaRepo.ObterPorId(id);
-
-            if (pessoa == null)
+            OrdemServico ordemServico = _ordemServicoRepo.ObterPorId(id);
+            if (ordemServico == null)
             {
                 return HttpNotFound();
             }
-            return View(pessoa);
+            return View(ordemServico);
         }
 
-        // GET: Pessoa/Create
+        // GET: OrdemServicos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Pessoa/Create
+        // POST: OrdemServicos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,NomeFantasia,Sexo,Telefone,Email,TipoPessoa")] Pessoa pessoa)
+        public ActionResult Create([Bind(Include = "Id,Data,ValorTotal,FormaPagto")] OrdemServico ordemServico)
         {
             if (ModelState.IsValid)
             {
-                _pessoaRepo.Salvar(pessoa);
+                _ordemServicoRepo.Salvar(ordemServico);
                 return RedirectToAction("Index");
             }
 
-            return View(pessoa);
+            return View(ordemServico);
         }
 
-        // GET: Pessoas/Edit/5
+        // GET: OrdemServicos/Edit/5
         public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pessoa pessoa = _pessoaRepo.ObterPorId(id);
-            if (pessoa == null)
+            OrdemServico ordemServico = _ordemServicoRepo.ObterPorId(id);
+            if (ordemServico == null)
             {
                 return HttpNotFound();
             }
-            return View(pessoa);
+            return View(ordemServico);
         }
 
-        // POST: Pessoas/Edit/5
+        // POST: OrdemServicos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,NomeFantasia,Sexo,Telefone,Email,TipoPessoa")] Pessoa pessoa)
+        public ActionResult Edit([Bind(Include = "Id,Data,ValorTotal,FormaPagto")] OrdemServico ordemServico)
         {
             if (ModelState.IsValid)
             {
-                _pessoaRepo.Atualizar(pessoa);
+                _ordemServicoRepo.Atualizar(ordemServico);
                 return RedirectToAction("Index");
             }
-            return View(pessoa);
+            return View(ordemServico);
         }
 
-        // GET: Pessoas/Delete/5
+        // GET: OrdemServicos/Delete/5
         public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pessoa pessoa = _pessoaRepo.ObterPorId(id);
-            if (pessoa == null)
+            OrdemServico ordemServico = _ordemServicoRepo.ObterPorId(id);
+            if (ordemServico == null)
             {
                 return HttpNotFound();
             }
-            return View(pessoa);
+            return View(ordemServico);
         }
 
-        // POST: Pessoas/Delete/5
+        // POST: OrdemServicos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _pessoaRepo.Remover(id);
+            _ordemServicoRepo.Remover(id);
             return RedirectToAction("Index");
         }
     }

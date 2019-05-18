@@ -2,17 +2,19 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Servicos.Models;
 
-namespace Servicos.Data
+namespace Servicos.Context
 {
-    public class ServicosContexto : DbContext
+    public class ServicosContext : DbContext
     {
-        public ServicosContexto()
+        public ServicosContext()
             : base("ServicosContextoDev")
         {
 
         }
 
         public DbSet<Pessoa> Pessoa { get; set; }
+
+        public DbSet<OrdemServico> OrdemServico { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
