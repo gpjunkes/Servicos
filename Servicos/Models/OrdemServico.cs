@@ -12,5 +12,9 @@ namespace Servicos.Models
         public decimal ValorTotal { get; set; }
 
         public string FormaPagto { get; set; }
+
+        public int IdPessoa { get; set; }
+
+        public virtual Pessoa Pessoa { get; set; }
     }
 }

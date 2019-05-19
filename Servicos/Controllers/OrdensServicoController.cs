@@ -5,22 +5,22 @@ using Servicos.Repository;
 
 namespace Servicos.Controllers
 {
-    public class OrdemServicosController : Controller
+    public class OrdensServicoController : Controller
     {
         private readonly OrdemServicoRepo _ordemServicoRepo;
 
-        public OrdemServicosController()
+        public OrdensServicoController()
         {
             _ordemServicoRepo = new OrdemServicoRepo();
         }
 
-        // GET: OrdemServicos
+        // GET: OrdensServico
         public ActionResult Index()
         {
             return View(_ordemServicoRepo.ObterTodos());
         }
 
-        // GET: OrdemServicos/Details/5
+        // GET: OrdensServico/Details/5
         public ActionResult Details(int id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace Servicos.Controllers
             return View(ordemServico);
         }
 
-        // GET: OrdemServicos/Create
+        // GET: OrdensServico/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: OrdemServicos/Create
+        // POST: OrdensServico/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -57,7 +57,7 @@ namespace Servicos.Controllers
             return View(ordemServico);
         }
 
-        // GET: OrdemServicos/Edit/5
+        // GET: OrdensServico/Edit/5
         public ActionResult Edit(int id)
         {
             if (id == null)
@@ -72,7 +72,7 @@ namespace Servicos.Controllers
             return View(ordemServico);
         }
 
-        // POST: OrdemServicos/Edit/5
+        // POST: OrdensServico/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -87,7 +87,7 @@ namespace Servicos.Controllers
             return View(ordemServico);
         }
 
-        // GET: OrdemServicos/Delete/5
+        // GET: OrdensServico/Delete/5
         public ActionResult Delete(int id)
         {
             if (id == null)
@@ -102,7 +102,7 @@ namespace Servicos.Controllers
             return View(ordemServico);
         }
 
-        // POST: OrdemServicos/Delete/5
+        // POST: OrdensServico/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

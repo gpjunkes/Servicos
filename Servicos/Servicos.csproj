@@ -120,15 +120,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\OrdemServicos\Create.cshtml" />
-    <Content Include="Views\OrdemServicos\Delete.cshtml" />
-    <Content Include="Views\OrdemServicos\Details.cshtml" />
-    <Content Include="Views\OrdemServicos\Edit.cshtml" />
-    <Content Include="Views\OrdemServicos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\OrdemServicosController.cs" />
+    <Compile Include="Controllers\OrdensServicoController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Context\ServicosContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -151,6 +146,11 @@
     <Content Include="Views\Pessoas\Edit.cshtml" />
     <Content Include="Views\Pessoas\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\OrdensServico\Create.cshtml" />
+    <Content Include="Views\OrdensServico\Delete.cshtml" />
+    <Content Include="Views\OrdensServico\Details.cshtml" />
+    <Content Include="Views\OrdensServico\Edit.cshtml" />
+    <Content Include="Views\OrdensServico\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
