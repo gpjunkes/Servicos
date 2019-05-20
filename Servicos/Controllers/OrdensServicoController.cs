@@ -8,10 +8,12 @@ namespace Servicos.Controllers
     public class OrdensServicoController : Controller
     {
         private readonly OrdemServicoRepo _ordemServicoRepo;
+        private readonly PessoaRepo _pessoaRepo;
 
         public OrdensServicoController()
         {
             _ordemServicoRepo = new OrdemServicoRepo();
+            _pessoaRepo = new PessoaRepo();
         }
 
         // GET: OrdensServico
@@ -46,15 +48,26 @@ namespace Servicos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Data,ValorTotal,FormaPagto")] OrdemServico ordemServico)
+        public ActionResult Create([Bind(Include = "Id,Data,ValorTotal,FormaPagto,IdPessoa")] OrdemServico ordemServico)
         {
             if (ModelState.IsValid)
             {
+                if (!this.ValidarPessoaNaOs(ordemServico))
+                {
+                    System.Web.HttpContext.Current.Response.Write("Pessoa não encontrada. Informe um registro existente.");
+                    return View();
+                }
                 _ordemServicoRepo.Salvar(ordemServico);
                 return RedirectToAction("Index");
             }
 
             return View(ordemServico);
+        }
+
+        private bool ValidarPessoaNaOs(OrdemServico ordemServico)
+        {
+            var pessoa = _pessoaRepo.ObterPorId(ordemServico.IdPessoa);
+            return pessoa != null;
         }
 
         // GET: OrdensServico/Edit/5
@@ -77,10 +90,15 @@ namespace Servicos.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Data,ValorTotal,FormaPagto")] OrdemServico ordemServico)
+        public ActionResult Edit([Bind(Include = "Id,Data,ValorTotal,FormaPagto,IdPessoa")] OrdemServico ordemServico)
         {
             if (ModelState.IsValid)
             {
+                if (!this.ValidarPessoaNaOs(ordemServico))
+                {
+                    System.Web.HttpContext.Current.Response.Write("Pessoa não encontrada. Informe um registro existente.");
+                    return View();
+                }
                 _ordemServicoRepo.Atualizar(ordemServico);
                 return RedirectToAction("Index");
             }

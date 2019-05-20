@@ -25,7 +25,7 @@ namespace Servicos.Repository
 
         public List<Pessoa> ObterTodos()
         {
-            return _contexto.Pessoa.ToList();
+            return _contexto.Pessoa.OrderBy(p => p.Nome).ToList();
         }
 
         public void Atualizar(Pessoa pessoa)

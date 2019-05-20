@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace Servicos.Models
 {
-    public class OrdemServico
+    public class OrdemServicoView
     {
         public int Id { get; set; }
 
@@ -12,8 +15,6 @@ namespace Servicos.Models
 
         public string FormaPagto { get; set; }
 
-        public int IdPessoa { get; set; }
-
-        public virtual Pessoa Pessoa { get; set; }
+        public string NomePessoa { get; set; }
     }
 }

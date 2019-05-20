@@ -1,13 +1,13 @@
-﻿@model IEnumerable<Servicos.Models.OrdemServico>
+﻿@model IEnumerable<Servicos.Models.OrdemServicoView>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ordens de serviço</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -15,10 +15,13 @@
             @Html.DisplayNameFor(model => model.Data)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ValorTotal)
+            Valor total
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FormaPagto)
+            Forma de pagamento
+        </th>
+        <th>
+            Pessoa
         </th>
         <th></th>
     </tr>
@@ -35,9 +38,12 @@
             @Html.DisplayFor(modelItem => item.FormaPagto)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.NomePessoa)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
