@@ -26,19 +26,21 @@ namespace Servicos.Repository
 
         public List<Pessoa> ObterTodos()
         {
-            var ret = new List<Pessoa>();
-            using (var conexao = new SqlConnection())
-            {
-                conexao.ConnectionString = ConfigurationManager.ConnectionStrings["ServicosContextoDev"].ConnectionString;
-                conexao.Open();
+            //var ret = new List<Pessoa>();
+            //using (var conexao = new SqlConnection())
+            //{
+            //    conexao.ConnectionString = ConfigurationManager.ConnectionStrings["ServicosContextoDev"].ConnectionString;
+            //    conexao.Open();
 
-                var sql = "select * from pessoa p" +
-                          " order by p.nome";
+            //    var sql = "select * from pessoa p" +
+            //              " order by p.nome";
 
-                ret = conexao.Query<Pessoa>(sql).ToList();
-            }
+            //    ret = conexao.Query<Pessoa>(sql).ToList();
+            //}
 
-            return ret;
+            //return ret;
+
+            return _contexto.Pessoa.OrderBy(p => p.Nome).ToList();
 
         }
 

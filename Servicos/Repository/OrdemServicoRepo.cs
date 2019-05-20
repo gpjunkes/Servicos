@@ -34,7 +34,7 @@ namespace Servicos.Repository
 
                 var sql = "select o.id, o.data, o.valortotal, o.formapagto, p.nome as nomepessoa"+
                           "  from ordemservico o, pessoa p "+
-                          " where o.pessoa_id = p.id" + 
+                          " where o.idpessoa = p.id" + 
                           " order by o.data";
 
                 ret = conexao.Query<OrdemServicoView>(sql).ToList();

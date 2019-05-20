@@ -97,10 +97,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ServicosDB.mdf" />
-    <Content Include="App_Data\ServicosDB_log.ldf">
-      <DependentUpon>ServicosDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -126,12 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdensServicoController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Context\ServicosContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Map\OrdemServicoMap.cs" />
+    <Compile Include="Map\PessoaMap.cs" />
     <Compile Include="Models\OrdemServico.cs" />
     <Compile Include="Models\OrdemServicoView.cs" />
     <Compile Include="Models\Pessoa.cs" />
@@ -155,6 +154,7 @@
     <Content Include="Views\OrdensServico\Details.cshtml" />
     <Content Include="Views\OrdensServico\Edit.cshtml" />
     <Content Include="Views\OrdensServico\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -162,7 +162,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
