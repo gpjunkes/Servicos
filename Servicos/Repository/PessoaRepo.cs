@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
+using Dapper;
 using Servicos.Context;
 using Servicos.Models;
 
@@ -25,7 +26,20 @@ namespace Servicos.Repository
 
         public List<Pessoa> ObterTodos()
         {
-            return _contexto.Pessoa.OrderBy(p => p.Nome).ToList();
+            var ret = new List<Pessoa>();
+            using (var conexao = new SqlConnection())
+            {
+                conexao.ConnectionString = ConfigurationManager.ConnectionStrings["ServicosContextoDev"].ConnectionString;
+                conexao.Open();
+
+                var sql = "select * from pessoa p" +
+                          " order by p.nome";
+
+                ret = conexao.Query<Pessoa>(sql).ToList();
+            }
+
+            return ret;
+
         }
 
         public void Atualizar(Pessoa pessoa)
@@ -43,7 +57,19 @@ namespace Servicos.Repository
 
         public Pessoa ObterPorId(int id)
         {
-            return _contexto.Pessoa.Find(id);
+            var ret = new Pessoa();
+            using (var conexao = new SqlConnection())
+            {
+                conexao.ConnectionString = ConfigurationManager.ConnectionStrings["ServicosContextoDev"].ConnectionString;
+                conexao.Open();
+
+                var sql = "select * from pessoa p" +
+                          " where p.id = " + id;
+
+                ret = conexao.Query<Pessoa>(sql).FirstOrDefault();
+            }
+
+            return ret;
 
         }
     }

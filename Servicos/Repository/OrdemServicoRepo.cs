@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using Servicos.Context;
 using Servicos.Models;
 using Dapper;
@@ -36,14 +34,13 @@ namespace Servicos.Repository
 
                 var sql = "select o.id, o.data, o.valortotal, o.formapagto, p.nome as nomepessoa"+
                           "  from ordemservico o, pessoa p "+
-                          " where o.pessoa_id = p.id";
+                          " where o.pessoa_id = p.id" + 
+                          " order by o.data";
 
                 ret = conexao.Query<OrdemServicoView>(sql).ToList();
             }
 
             return ret;
-
-            //return _contexto.OrdemServico.ToList();
         }
 
         public void Atualizar(OrdemServico ordemServico)
@@ -61,8 +58,19 @@ namespace Servicos.Repository
 
         public OrdemServico ObterPorId(int id)
         {
-            return _contexto.OrdemServico.Find(id);
+            var ret = new OrdemServico();
+            using (var conexao = new SqlConnection())
+            {
+                conexao.ConnectionString = ConfigurationManager.ConnectionStrings["ServicosContextoDev"].ConnectionString;
+                conexao.Open();
 
+                var sql = "select * from ordemservico o" +
+                          " where o.id = " + id;
+
+                ret = conexao.Query<OrdemServico>(sql).FirstOrDefault();
+            }
+
+            return ret;
         }
     }
 }
